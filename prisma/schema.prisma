@@ -215,3 +215,13 @@ model VerificationToken {
   expires    DateTime
 }
 
+model PasswordResetToken {
+  id         Int      @id @default(autoincrement())
+  identifier String
+  token      String   @unique
+  expires    DateTime
+  createdAt  DateTime @default(now())
+
+  @@index([identifier])
+}
+
