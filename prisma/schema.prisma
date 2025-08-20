@@ -1,0 +1,217 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  UTILISATEUR
+}
+
+enum TypeEvenement {
+  CONCERT
+  CONFERENCE
+  STAND
+  ACTIVITE
+}
+
+enum StatutEvenement {
+  BROUILLON
+  PUBLIE
+  REPORTE
+  ANNULE
+}
+
+enum TypeJeton {
+  VERIFICATION_EMAIL
+  REINITIALISATION_MDP
+  ACTUALISATION_JWT
+}
+
+enum TypePOI {
+  SCENE
+  STAND
+  INFO
+  TOILETTES
+  RESTAURATION
+  ENTREE
+  AUTRE
+}
+
+model Utilisateur {
+  id                Int       @id @default(autoincrement())
+  nom               String
+  prenom            String?
+  email             String    @unique
+  mot_de_passe_hash String
+  role              Role      @default(UTILISATEUR)
+  email_verifie     Boolean   @default(false)
+  favoris           Favori[]
+  rappels           Rappel[]
+  jetons            Jeton[]
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  @@index([role])
+}
+
+model Festival {
+  id          Int       @id @default(autoincrement())
+  nom         String
+  description String?
+  branding    Json?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  @@index([nom])
+}
+
+model Lieu {
+  id          Int       @id @default(autoincrement())
+  nom         String
+  adresse     String?
+  ville       String?
+  pays        String?
+  latitude    Decimal?  @db.Decimal(9, 6)
+  longitude   Decimal?  @db.Decimal(9, 6)
+  description String?
+  pois        PointInteret[]
+  evenements  Evenement[]
+  @@index([ville])
+  @@index([pays])
+  @@index([latitude, longitude])
+  @@index([nom])
+}
+
+model PointInteret {
+  id          Int       @id @default(autoincrement())
+  nom         String
+  type        TypePOI
+  lieu_id     Int?
+  lieu        Lieu?     @relation(fields: [lieu_id], references: [id], onDelete: SetNull)
+  latitude    Decimal?  @db.Decimal(9, 6)
+  longitude   Decimal?  @db.Decimal(9, 6)
+  description String?
+  createdAt   DateTime  @default(now())
+  evenements  Evenement[]
+  @@index([lieu_id])
+  @@index([type])
+  @@index([latitude, longitude])
+  @@index([nom])
+}
+
+model Artiste {
+  id                 Int       @id @default(autoincrement())
+  nom                String
+  bio                String?
+  photo_url          String?
+  site_web           String?
+  instagram          String?
+  x                  String?
+  facebook           String?
+  style_principal    String?
+  genres_secondaires Json?
+  evenements         EvenementArtiste[]
+  @@unique([nom])
+  @@index([nom])
+}
+
+model Genre {
+  id         Int               @id @default(autoincrement())
+  nom        String            @unique
+  evenements EvenementGenre[]
+  @@index([nom])
+}
+
+model Evenement {
+  id          Int             @id @default(autoincrement())
+  titre       String
+  description String?
+  categorie   TypeEvenement
+  date_debut  DateTime
+  date_fin    DateTime
+  statut      StatutEvenement @default(PUBLIE)
+  capacite    Int?
+  poi_id      Int?
+  poi         PointInteret?   @relation(fields: [poi_id], references: [id], onDelete: SetNull)
+  lieu_id     Int?
+  lieu        Lieu?           @relation(fields: [lieu_id], references: [id], onDelete: SetNull)
+  artistes    EvenementArtiste[]
+  genres      EvenementGenre[]
+  favoris     Favori[]
+  rappels     Rappel[]
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+  @@index([date_debut])
+  @@index([poi_id, date_debut, date_fin])
+  @@index([categorie])
+  @@index([statut])
+  @@index([titre])
+}
+
+model EvenementArtiste {
+  evenement_id Int
+  artiste_id   Int
+  role_scene   String?
+  evenement Evenement @relation(fields: [evenement_id], references: [id], onDelete: Cascade)
+  artiste   Artiste   @relation(fields: [artiste_id], references: [id], onDelete: Cascade)
+  @@id([evenement_id, artiste_id])
+  @@index([artiste_id])
+}
+
+model EvenementGenre {
+  evenement_id Int
+  genre_id     Int
+  evenement    Evenement @relation(fields: [evenement_id], references: [id], onDelete: Cascade)
+  genre        Genre     @relation(fields: [genre_id], references: [id])
+  @@id([evenement_id, genre_id])
+  @@index([genre_id])
+}
+
+model Favori {
+  utilisateur_id Int
+  evenement_id   Int
+  createdAt      DateTime @default(now())
+  utilisateur Utilisateur @relation(fields: [utilisateur_id], references: [id], onDelete: Cascade)
+  evenement   Evenement   @relation(fields: [evenement_id], references: [id], onDelete: Cascade)
+  @@id([utilisateur_id, evenement_id])
+  @@index([evenement_id])
+}
+
+model Rappel {
+  id             Int       @id @default(autoincrement())
+  utilisateur_id Int
+  evenement_id   Int
+  delai_minutes  Int
+  date_rappel    DateTime?
+  actif          Boolean   @default(true)
+  createdAt      DateTime  @default(now())
+  utilisateur Utilisateur @relation(fields: [utilisateur_id], references: [id], onDelete: Cascade)
+  evenement   Evenement   @relation(fields: [evenement_id], references: [id], onDelete: Cascade)
+  @@unique([utilisateur_id, evenement_id, delai_minutes])
+  @@index([date_rappel])
+  @@index([evenement_id])
+}
+
+model Jeton {
+  id             Int       @id @default(autoincrement())
+  utilisateur_id Int
+  type           TypeJeton
+  token_hash     String    @unique
+  expire_a       DateTime
+  utilise        Boolean   @default(false)
+  createdAt      DateTime  @default(now())
+  utilisateur Utilisateur @relation(fields: [utilisateur_id], references: [id], onDelete: Cascade)
+  @@index([type, expire_a])
+  @@index([expire_a])
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @id
+  expires    DateTime
+}
+
