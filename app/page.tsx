@@ -189,7 +189,7 @@ export default function HomePage() {
                             Carte interactive
                         </Link>
                         <Link
-                            href="/events"
+                            href="/favorites"
                             className="px-7 py-3 rounded-full bg-white/15 border border-white/30 text-white backdrop-blur-md hover:bg-white/25 transition"
                         >
                             Mes favoris
