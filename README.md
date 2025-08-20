@@ -111,8 +111,7 @@ npx prisma migrate dev -n init
 Créez manuellement la BDD shadow :
 
 ```bash
-docker exec -it festival_db mysql -uroot -proot \
-  -e "CREATE DATABASE IF NOT EXISTS festival_shadow CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+docker exec -it festival_db mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS festival_shadow CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
 ```
 
 Relancez la migration :
