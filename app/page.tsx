@@ -254,7 +254,7 @@ export default function HomePage() {
                     <div className="flex gap-6 text-slate-700">
                         <Link href="/events" className="hover:text-slate-900">Événements</Link>
                         <Link href="/events" className="hover:text-slate-900">Carte</Link>
-                        <Link href="/events" className="hover:text-slate-900">Mes favoris</Link>
+                        <Link href="/favorites" className="hover:text-slate-900">Mes favoris</Link>
                     </div>
                 </div>
             </footer>

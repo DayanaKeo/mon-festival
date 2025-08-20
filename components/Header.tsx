@@ -7,7 +7,7 @@ import { useState } from 'react'
 
 function NavLink({ href, children }: { href: string; children: React.ReactNode }) {
     const pathname = usePathname()
-    const active = pathname === href
+    const active = pathname === href || pathname.startsWith(href + '/')
     return (
         <Link
             href={href}
@@ -25,6 +25,8 @@ function NavLink({ href, children }: { href: string; children: React.ReactNode }
 export default function Header() {
     const { data: session, status } = useSession()
     const isAuth = status === 'authenticated'
+    const role = (session?.user as any)?.role
+    const isAdmin = isAuth && role === 'ADMIN'
     const [open, setOpen] = useState(false)
 
     return (
@@ -42,7 +44,7 @@ export default function Header() {
                 <nav className="hidden md:flex items-center gap-2">
                     <NavLink href="/events">Événements</NavLink>
                     {isAuth && <NavLink href="/favorites">Mes Favoris</NavLink>}
-                    {isAuth && <NavLink href="/admin">Admin</NavLink>}
+                    {isAdmin && <NavLink href="/admin">Admin</NavLink>}
                     {!isAuth && <NavLink href="/login">Connexion</NavLink>}
                     {!isAuth && <NavLink href="/register">Inscription</NavLink>}
                     {isAuth && (
@@ -70,7 +72,7 @@ export default function Header() {
                     <div className="mx-auto max-w-6xl px-4 py-3 flex flex-col gap-2">
                         <NavLink href="/events">Événements</NavLink>
                         {isAuth && <NavLink href="/favorites">Mes Favoris</NavLink>}
-                        {isAuth && <NavLink href="/admin">Admin</NavLink>}
+                        {isAdmin && <NavLink href="/admin">Admin</NavLink>}
                         {!isAuth && <NavLink href="/login">Connexion</NavLink>}
                         {!isAuth && <NavLink href="/register">Inscription</NavLink>}
                         {isAuth && (
