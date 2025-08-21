@@ -284,7 +284,3 @@ npm run start
 
 Projet pédagogique “festival” — librement réutilisable pour vos TP/démos.
 Améliorations bienvenues (PR, issues) ✌️
-
----
-
-Besoin d’un **docker-compose** complet pour builder aussi le **front Next** en conteneur ? Je te prépare ça si tu veux.
