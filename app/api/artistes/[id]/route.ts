@@ -1,3 +1,55 @@
+/**
+ * @swagger
+ * /api/artistes/{id}:
+ *   get:
+ *     summary: Récupérer un artiste par ID
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         description: L'identifiant de l'artiste à récupérer
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Affiche les détails de l'artiste
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: integer
+ *                 nom:
+ *                   type: string
+ *                 bio:
+ *                   type: string
+ *                 photo_url:
+ *                   type: string
+ *                 site_web:
+ *                   type: string
+ *                 instagram:
+ *                   type: string
+ *                 x:
+ *                   type: string
+ *                 facebook:
+ *                   type: string
+ *                 style_principal:
+ *                   type: string
+ *                 genres_secondaires:
+ *                   type: array
+ *                   items:
+ *                     type: string
+ *       400:
+ *         description: ID invalide fourni
+ *       404:
+ *         description: Artiste introuvable
+ *       500:
+ *         description: Erreur serveur
+ */
+
+import { NextResponse } from "next/server";
+import { prisma } from "@/lib/prisma";
 // GET /api/artistes/[id]
 export async function GET(_: Request, { params }: { params: { id: string } }) {
     try {
@@ -11,8 +63,7 @@ export async function GET(_: Request, { params }: { params: { id: string } }) {
         return NextResponse.json({ error: "Erreur serveur" }, { status: 500 });
     }
 }
-import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+ // Adjust path to your `swagger.ts`
 
 function normDraft(body: any) {
     const {

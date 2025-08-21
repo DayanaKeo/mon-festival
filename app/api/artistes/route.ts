@@ -1,3 +1,12 @@
+/**
+ * @swagger
+ * /api/artistes:
+ *   get:
+ *     summary: Récupérer tous les artistes
+ *     responses:
+ *       200:
+ *         description: Liste des artistes
+ */
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
@@ -45,6 +54,87 @@ export async function GET() {
     }
 }
 
+/**
+ * @swagger
+ * /api/artistes:
+ *   post:
+ *     summary: Créer un nouvel artiste
+ *     description: Permet de créer un nouvel artiste en fournissant les informations nécessaires.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               nom:
+ *                 type: string
+ *                 description: Le nom de l'artiste
+ *               bio:
+ *                 type: string
+ *                 description: La biographie de l'artiste
+ *               photo_url:
+ *                 type: string
+ *                 description: URL de la photo de l'artiste
+ *               site_web:
+ *                 type: string
+ *                 description: Site web de l'artiste
+ *               instagram:
+ *                 type: string
+ *                 description: Compte Instagram de l'artiste
+ *               x:
+ *                 type: string
+ *                 description: Compte X (anciennement Twitter) de l'artiste
+ *               facebook:
+ *                 type: string
+ *                 description: Compte Facebook de l'artiste
+ *               style_principal:
+ *                 type: string
+ *                 description: Style principal de l'artiste
+ *               genres_secondaires:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *                 description: Liste des genres secondaires de l'artiste
+ *             required:
+ *               - nom
+ *     responses:
+ *       201:
+ *         description: Artiste créé avec succès
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: integer
+ *                 nom:
+ *                   type: string
+ *                 bio:
+ *                   type: string
+ *                 photo_url:
+ *                   type: string
+ *                 site_web:
+ *                   type: string
+ *                 instagram:
+ *                   type: string
+ *                 x:
+ *                   type: string
+ *                 facebook:
+ *                   type: string
+ *                 style_principal:
+ *                   type: string
+ *                 genres_secondaires:
+ *                   type: array
+ *                   items:
+ *                     type: string
+ *       400:
+ *         description: Le champ `nom` est obligatoire
+ *       409:
+ *         description: Un artiste avec ce nom existe déjà
+ *       500:
+ *         description: Erreur serveur
+ */
 // POST /api/artistes
 export async function POST(req: Request) {
     try {

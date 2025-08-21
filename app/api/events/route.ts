@@ -1,3 +1,14 @@
+/**
+ * @swagger
+ * /api/events:
+ *   get:
+ *     summary: Récupérer tous les événements
+ *     responses:
+ *       200:
+ *         description: Liste des événements
+ */
+
+
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getServerSession } from "next-auth";

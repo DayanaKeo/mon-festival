@@ -1,3 +1,78 @@
+/**
+ * @swagger
+ * /api/favorites:
+ *   get:
+ *     summary: Récupérer les favoris
+ *     description: Récupère la liste des événements favoris de l'utilisateur connecté ou vérifie si un événement spécifique est favorisé.
+ *     parameters:
+ *       - name: eventId
+ *         in: query
+ *         required: false
+ *         description: ID de l'événement à vérifier
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Liste des événements favoris ou état de favori pour un événement spécifique
+ *         content:
+ *           application/json:
+ *             schema:
+ *               oneOf:
+ *                 - type: object
+ *                   properties:
+ *                     favorited:
+ *                       type: boolean
+ *                 - type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       utilisateur_id:
+ *                         type: integer
+ *                       evenement_id:
+ *                         type: integer
+ *                       createdAt:
+ *                         type: string
+ *                         format: date-time
+ *   post:
+ *     summary: Ajouter un événement aux favoris
+ *     description: Ajoute un événement à la liste des favoris de l'utilisateur connecté.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               event_id:
+ *                 type: integer
+ *             required:
+ *               - event_id
+ *     responses:
+ *       200:
+ *         description: Événement ajouté aux favoris avec succès
+ *       400:
+ *         description: Paramètre `event_id` manquant
+ *       401:
+ *         description: Utilisateur non autorisé
+ *   delete:
+ *     summary: Supprimer un événement des favoris
+ *     description: Supprime un événement de la liste des favoris de l'utilisateur connecté.
+ *     parameters:
+ *       - name: eventId
+ *         in: query
+ *         required: true
+ *         description: ID de l'événement à supprimer des favoris
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Événement supprimé des favoris avec succès
+ *       400:
+ *         description: Paramètre `eventId` manquant
+ *       401:
+ *         description: Utilisateur non autorisé
+ */
+
 import { NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/authOptions'

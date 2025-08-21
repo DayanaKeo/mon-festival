@@ -36,6 +36,110 @@ function normDraft(body: any) {
     };
 }
 
+/**
+ * @swagger
+ * /api/lieux:
+ *   get:
+ *     summary: Récupérer tous les lieux
+ *     description: Récupère la liste de tous les lieux, triés par nom et ville, avec le nombre de points d'intérêt et d'événements associés.
+ *     responses:
+ *       200:
+ *         description: Liste des lieux récupérée avec succès
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: integer
+ *                   nom:
+ *                     type: string
+ *                   adresse:
+ *                     type: string
+ *                   ville:
+ *                     type: string
+ *                   pays:
+ *                     type: string
+ *                   latitude:
+ *                     type: string
+ *                   longitude:
+ *                     type: string
+ *                   description:
+ *                     type: string
+ *                   _count:
+ *                     type: object
+ *                     properties:
+ *                       pois:
+ *                         type: integer
+ *                       evenements:
+ *                         type: integer
+ *       500:
+ *         description: Erreur serveur
+ *   post:
+ *     summary: Créer un nouveau lieu
+ *     description: Permet de créer un nouveau lieu en fournissant les informations nécessaires.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               nom:
+ *                 type: string
+ *                 description: Le nom du lieu
+ *               adresse:
+ *                 type: string
+ *                 description: L'adresse du lieu
+ *               ville:
+ *                 type: string
+ *                 description: La ville du lieu
+ *               pays:
+ *                 type: string
+ *                 description: Le pays du lieu
+ *               latitude:
+ *                 type: string
+ *                 description: La latitude du lieu
+ *               longitude:
+ *                 type: string
+ *                 description: La longitude du lieu
+ *               description:
+ *                 type: string
+ *                 description: Une description du lieu
+ *             required:
+ *               - nom
+ *     responses:
+ *       201:
+ *         description: Lieu créé avec succès
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: integer
+ *                 nom:
+ *                   type: string
+ *                 adresse:
+ *                   type: string
+ *                 ville:
+ *                   type: string
+ *                 pays:
+ *                   type: string
+ *                 latitude:
+ *                   type: string
+ *                 longitude:
+ *                   type: string
+ *                 description:
+ *                   type: string
+ *       400:
+ *         description: Le nom est obligatoire
+ *       500:
+ *         description: Erreur serveur
+ */
+
 // GET /api/lieux
 export async function GET() {
     try {
