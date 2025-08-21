@@ -14,18 +14,11 @@ function normDraft(body: any) {
         genres_secondaires = null,
     } = body || {};
 
-    // Accepte soit un tableau, soit une string "rock, jazz"
     let genres: any = null;
-    if (Array.isArray(genres_secondaires)) {
-        genres = genres_secondaires;
-    } else if (typeof genres_secondaires === "string") {
-        genres = genres_secondaires
-            .split(",")
-            .map((s: string) => s.trim())
-            .filter(Boolean);
-    } else if (genres_secondaires && typeof genres_secondaires === "object") {
-        genres = genres_secondaires;
-    }
+    if (Array.isArray(genres_secondaires)) genres = genres_secondaires;
+    else if (typeof genres_secondaires === "string")
+        genres = genres_secondaires.split(",").map((s: string) => s.trim()).filter(Boolean);
+    else if (genres_secondaires && typeof genres_secondaires === "object") genres = genres_secondaires;
 
     return {
         nom,
@@ -63,7 +56,6 @@ export async function POST(req: Request) {
         const created = await prisma.artiste.create({ data: body });
         return NextResponse.json(created, { status: 201 });
     } catch (e: any) {
-        // Gestion de l’unicité sur nom
         if (e?.code === "P2002") {
             return NextResponse.json({ error: "Un artiste avec ce nom existe déjà." }, { status: 409 });
         }

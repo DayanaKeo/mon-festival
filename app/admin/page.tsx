@@ -197,12 +197,6 @@ export default function AdminDashboardPage() {
                                 </div>
                                 <div className="flex shrink-0 items-center gap-2">
                                     <Link
-                                        href={`/admin/events/${e.id}/edit`}
-                                        className="rounded-lg border border-white/10 bg-white/10 px-2.5 py-1.5 text-xs hover:bg-white/15"
-                                    >
-                                        Éditer
-                                    </Link>
-                                    <Link
                                         href={`/events/${e.id}`}
                                         className="rounded-lg bg-gradient-to-r from-fuchsia-600 to-violet-600 px-2.5 py-1.5 text-xs font-medium text-white hover:from-fuchsia-500 hover:to-violet-500"
                                     >

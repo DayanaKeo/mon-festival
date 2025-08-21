@@ -43,6 +43,9 @@ export default function Header() {
                 {/* Menu desktop */}
                 <nav className="hidden md:flex items-center gap-2">
                     <NavLink href="/events">Événements</NavLink>
+                    {/* ➕ Ajout ici */}
+                    <NavLink href="/map">Carte interactive</NavLink>
+
                     {isAuth && <NavLink href="/favorites">Mes Favoris</NavLink>}
                     <NavLink href="/artistes">Artistes</NavLink>
                     {isAdmin && <NavLink href="/admin">Admin</NavLink>}
@@ -62,6 +65,7 @@ export default function Header() {
                 <button
                     onClick={() => setOpen(!open)}
                     className="md:hidden text-white/90 px-3 py-2 rounded-lg hover:bg-white/10 transition"
+                    aria-label="Ouvrir le menu"
                 >
                     ☰
                 </button>
@@ -72,7 +76,12 @@ export default function Header() {
                 <div className="md:hidden bg-black/70 backdrop-blur-md border-t border-white/10">
                     <div className="mx-auto max-w-6xl px-4 py-3 flex flex-col gap-2">
                         <NavLink href="/events">Événements</NavLink>
+
                         <NavLink href="/artistes">Artistes</NavLink>
+                        {/* ➕ Ajout ici */}
+                        <NavLink href="/map">Carte interactive</NavLink>
+
+
                         {isAuth && <NavLink href="/favorites">Mes Favoris</NavLink>}
                         {isAdmin && <NavLink href="/admin">Admin</NavLink>}
                         {!isAuth && <NavLink href="/login">Connexion</NavLink>}

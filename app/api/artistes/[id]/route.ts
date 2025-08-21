@@ -46,12 +46,13 @@ function normDraft(body: any) {
     };
 }
 
-// PUT /api/artistes/[id]
-export async function PUT(req: Request, { params }: { params: { id: string } }) {
+// PUT /api/artistes/:id
+export async function PUT(req: Request, ctx: any) {
     try {
-        const id = Number(params.id);
-        if (!Number.isFinite(id)) return NextResponse.json({ error: "ID invalide" }, { status: 400 });
-
+        const id = Number(ctx?.params?.id);
+        if (!Number.isFinite(id)) {
+            return NextResponse.json({ error: "ID invalide" }, { status: 400 });
+        }
         const data = normDraft(await req.json());
         const updated = await prisma.artiste.update({ where: { id }, data });
         return NextResponse.json(updated);
@@ -63,12 +64,13 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
     }
 }
 
-// DELETE /api/artistes/[id]
-export async function DELETE(_: Request, { params }: { params: { id: string } }) {
+// DELETE /api/artistes/:id
+export async function DELETE(_req: Request, ctx: any) {
     try {
-        const id = Number(params.id);
-        if (!Number.isFinite(id)) return NextResponse.json({ error: "ID invalide" }, { status: 400 });
-
+        const id = Number(ctx?.params?.id);
+        if (!Number.isFinite(id)) {
+            return NextResponse.json({ error: "ID invalide" }, { status: 400 });
+        }
         await prisma.artiste.delete({ where: { id } });
         return NextResponse.json(null, { status: 204 });
     } catch {
