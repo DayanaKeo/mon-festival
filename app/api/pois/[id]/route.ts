@@ -34,14 +34,13 @@ function normDraft(body: any) {
 }
 
 // PUT /api/pois/[id]
-export async function PUT(req: Request, { params }: { params: { id: string } }) {
+export async function PUT(req: Request, ctx: any) {
     try {
-        const id = Number(params.id);
+        const id = Number(ctx?.params?.id);
         if (!Number.isFinite(id)) {
             return NextResponse.json({ error: "ID invalide" }, { status: 400 });
         }
         const data = normDraft(await req.json());
-
         const updated = await prisma.pointInteret.update({ where: { id }, data });
         return NextResponse.json(updated);
     } catch {
@@ -50,9 +49,9 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
 }
 
 // DELETE /api/pois/[id]
-export async function DELETE(_: Request, { params }: { params: { id: string } }) {
+export async function DELETE(_req: Request, ctx: any) {
     try {
-        const id = Number(params.id);
+        const id = Number(ctx?.params?.id);
         if (!Number.isFinite(id)) {
             return NextResponse.json({ error: "ID invalide" }, { status: 400 });
         }

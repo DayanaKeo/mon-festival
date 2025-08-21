@@ -1,17 +1,26 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { signIn } from 'next-auth/react'
 import Link from 'next/link'
+
+function VerifiedBanner() {
+    const sp = useSearchParams()
+    const verified = sp.get('verified') === '1'
+    if (!verified) return null
+    return (
+        <div className="mt-4 rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-sm text-emerald-300">
+            Email vérifié. Tu peux te connecter.
+        </div>
+    )
+}
 
 export default function LoginPage() {
     const [form, setForm] = useState({ email: '', password: '' })
     const [showPwd, setShowPwd] = useState(false)
     const [msg, setMsg] = useState('')
     const router = useRouter()
-    const sp = useSearchParams()
-    const verified = sp.get('verified') === '1'
 
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault()
@@ -38,11 +47,10 @@ export default function LoginPage() {
                     <h1 className="text-center text-2xl font-extrabold tracking-tight text-white">Connexion</h1>
                     <p className="mt-2 text-center text-sm text-white/70">Ravi de te revoir</p>
 
-                    {verified && (
-                        <div className="mt-4 rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-sm text-emerald-300">
-                            Email vérifié. Tu peux te connecter.
-                        </div>
-                    )}
+                    {/* ⚠️ useSearchParams doit être dans un Suspense */}
+                    <Suspense fallback={null}>
+                        <VerifiedBanner />
+                    </Suspense>
 
                     {!!msg && (
                         <div className="mt-4 rounded-xl border border-rose-500/30 bg-rose-500/10 px-4 py-2 text-sm text-rose-300">

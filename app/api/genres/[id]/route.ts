@@ -2,9 +2,9 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
 // PUT /api/genres/[id]
-export async function PUT(req: Request, { params }: { params: { id: string } }) {
+export async function PUT(req: Request, ctx: any) {
     try {
-        const id = Number(params.id);
+        const id = Number(ctx?.params?.id);
         if (!Number.isFinite(id)) return NextResponse.json({ error: "ID invalide" }, { status: 400 });
 
         const body = await req.json();
@@ -22,9 +22,9 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
 }
 
 // DELETE /api/genres/[id]
-export async function DELETE(_: Request, { params }: { params: { id: string } }) {
+export async function DELETE(_req: Request, ctx: any) {
     try {
-        const id = Number(params.id);
+        const id = Number(ctx?.params?.id);
         if (!Number.isFinite(id)) return NextResponse.json({ error: "ID invalide" }, { status: 400 });
 
         await prisma.genre.delete({ where: { id } });
