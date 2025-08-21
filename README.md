@@ -111,8 +111,7 @@ npx prisma migrate dev -n init
 Créez manuellement la BDD shadow :
 
 ```bash
-docker exec -it festival_db mysql -uroot -proot \
-  -e "CREATE DATABASE IF NOT EXISTS festival_shadow CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+docker exec -it festival_db mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS festival_shadow CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
 ```
 
 Relancez la migration :
@@ -285,7 +284,3 @@ npm run start
 
 Projet pédagogique “festival” — librement réutilisable pour vos TP/démos.
 Améliorations bienvenues (PR, issues) ✌️
-
----
-
-Besoin d’un **docker-compose** complet pour builder aussi le **front Next** en conteneur ? Je te prépare ça si tu veux.

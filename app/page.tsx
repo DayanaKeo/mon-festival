@@ -189,7 +189,7 @@ export default function HomePage() {
                             Carte interactive
                         </Link>
                         <Link
-                            href="/events"
+                            href="/favorites"
                             className="px-7 py-3 rounded-full bg-white/15 border border-white/30 text-white backdrop-blur-md hover:bg-white/25 transition"
                         >
                             Mes favoris
@@ -254,7 +254,7 @@ export default function HomePage() {
                     <div className="flex gap-6 text-slate-700">
                         <Link href="/events" className="hover:text-slate-900">Événements</Link>
                         <Link href="/events" className="hover:text-slate-900">Carte</Link>
-                        <Link href="/events" className="hover:text-slate-900">Mes favoris</Link>
+                        <Link href="/favorites" className="hover:text-slate-900">Mes favoris</Link>
                     </div>
                 </div>
             </footer>
