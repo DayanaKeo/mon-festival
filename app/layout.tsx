@@ -5,6 +5,7 @@ import RealtimeNotifications from '@/components/RealtimeNotifications';
 import { authOptions } from '@/lib/authOptions';
 import { getServerSession } from 'next-auth';
 import ReminderListener from '@/components/ReminderListener';
+import 'leaflet/dist/leaflet.css';
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
     const session = await getServerSession(authOptions);
