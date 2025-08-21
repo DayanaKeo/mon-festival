@@ -5,30 +5,16 @@ const MapClient = dynamic(() => import('./MapClient'), { ssr: false });
 
 export default function MapPage() {
     return (
-        <div
-            style={{
-                minHeight: '100vh',
-                background:
-                    'radial-gradient(ellipse at top left, rgba(168,85,247,0.13) 0%, rgba(2,6,23,1) 60%)',
-                backgroundColor: '#020617',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                marginTop: 0,
-                position: 'relative',
-                overflow: 'hidden',
-                paddingBottom: 32,
-            }}
-        >
-            <div style={{ pointerEvents: 'none', position: 'absolute', top: -80, left: -80, height: 288, width: 288, borderRadius: '50%', background: 'rgba(192,38,211,0.3)', filter: 'blur(48px)' }} />
-            <div style={{ pointerEvents: 'none', position: 'absolute', bottom: -96, right: -96, height: 320, width: 320, borderRadius: '50%', background: 'rgba(79,70,229,0.3)', filter: 'blur(48px)' }} />
-            <h1 className="from-violet-300 via-fuchsia-300 to-pink-300 text-2xl" style={{ fontSize: 24, fontWeight: 'bold' }}>
-                Carte interactive du festival
-            </h1>
-            <p>Explorez le site du festival et localisez tous les points d&apos;intérêt</p>
-
-            {/* Carte client-only */}
-            <MapClient />
+        <div className="relative min-h-screen overflow-hidden bg-[radial-gradient(60%_40%_at_15%_0%,rgba(168,85,247,.18),transparent_60%),radial-gradient(40%_35%_at_100%_100%,rgba(59,130,246,.18),transparent_55%),linear-gradient(180deg,#0b0f1a,#0b0f1a)]">
+            <div className="relative z-10 mx-auto max-w-6xl px-5 py-10">
+                <div className="mb-6 text-center">
+                    <h1 className="text-2xl font-extrabold tracking-tight text-white">Carte interactive du festival</h1>
+                    <p className="mt-1 text-sm text-white/70">
+                        Explore le site du festival et localise tous les points d’intérêt
+                    </p>
+                </div>
+                <MapClient />
+            </div>
         </div>
     );
 }
