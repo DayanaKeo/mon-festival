@@ -8,7 +8,7 @@ type UpdateBody = {
     email?: string;
     role?: "ADMIN" | "UTILISATEUR";
     email_verifie?: boolean;
-    mot_de_passe?: string; // si présent → rehash
+    mot_de_passe?: string;
 };
 
 function sanitize(u: any) {
@@ -17,9 +17,9 @@ function sanitize(u: any) {
 }
 
 // PUT /api/users/[id]
-export async function PUT(req: Request, { params }: { params: { id: string } }) {
+export async function PUT(req: Request, ctx: any) {
     try {
-        const id = Number(params.id);
+        const id = Number(ctx?.params?.id);
         if (!Number.isFinite(id)) return NextResponse.json({ error: "ID invalide" }, { status: 400 });
 
         const body = (await req.json()) as UpdateBody;
@@ -51,9 +51,9 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
 }
 
 // DELETE /api/users/[id]
-export async function DELETE(_: Request, { params }: { params: { id: string } }) {
+export async function DELETE(_req: Request, ctx: any) {
     try {
-        const id = Number(params.id);
+        const id = Number(ctx?.params?.id);
         if (!Number.isFinite(id)) return NextResponse.json({ error: "ID invalide" }, { status: 400 });
 
         await prisma.utilisateur.delete({ where: { id } });

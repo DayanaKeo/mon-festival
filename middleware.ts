@@ -1,22 +1,30 @@
-import { NextResponse } from 'next/server'
-import { getToken } from 'next-auth/jwt'
+import { NextRequest, NextResponse } from "next/server";
+import { getToken } from "next-auth/jwt";
 
-export async function middleware(req: Request) {
-    const url = new URL(req.url)
-    const pathname = url.pathname
-    const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET })
+export async function middleware(req: NextRequest) {
+    const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
+    const { pathname } = req.nextUrl;
 
-    if (pathname.startsWith('/admin')) {
-        if (!token || token.role !== 'ADMIN') return NextResponse.redirect(new URL('/login', req.url))
+    // Guard /admin : ADMIN seulement
+    if (pathname.startsWith("/admin")) {
+        if (!token || (token as any).role !== "ADMIN") {
+            const url = req.nextUrl.clone();
+            url.pathname = "/login";
+            url.searchParams.set("from", pathname);
+            return NextResponse.redirect(url);
+        }
     }
 
-    if ((pathname === '/login' || pathname === '/register') && token) {
-        return NextResponse.redirect(new URL('/', req.url))
+    // Empêche l'accès à /login et /register si déjà connecté
+    if ((pathname === "/login" || pathname === "/register") && token) {
+        const url = req.nextUrl.clone();
+        url.pathname = "/";
+        return NextResponse.redirect(url);
     }
 
-    return NextResponse.next()
+    return NextResponse.next();
 }
 
 export const config = {
-    matcher: ['/admin/:path*','/login','/register']
-}
+    matcher: ["/admin/:path*", "/login", "/register"],
+};

@@ -36,9 +36,9 @@ function normDraft(body: any) {
 }
 
 // PUT /api/lieux/[id]
-export async function PUT(req: Request, { params }: { params: { id: string } }) {
+export async function PUT(req: Request, ctx: any) {
     try {
-        const id = Number(params.id);
+        const id = Number(ctx?.params?.id);
         if (!Number.isFinite(id)) {
             return NextResponse.json({ error: "ID invalide" }, { status: 400 });
         }
@@ -51,9 +51,9 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
 }
 
 // DELETE /api/lieux/[id]
-export async function DELETE(_: Request, { params }: { params: { id: string } }) {
+export async function DELETE(_req: Request, ctx: any) {
     try {
-        const id = Number(params.id);
+        const id = Number(ctx?.params?.id);
         if (!Number.isFinite(id)) {
             return NextResponse.json({ error: "ID invalide" }, { status: 400 });
         }
