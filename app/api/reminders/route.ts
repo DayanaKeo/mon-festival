@@ -8,7 +8,6 @@ import { authOptions } from "@/lib/authOptions";
 import { prisma } from "@/lib/prisma";
 import { sendReminderActivatedEmail } from "@/lib/mailer";
 
-// Étend la Session pour avoir user.id
 declare module "next-auth" {
   interface Session {
     user: {
@@ -20,7 +19,6 @@ declare module "next-auth" {
   }
 }
 
-// GET /api/reminders[?eventId=123]
 // - si eventId: { active: boolean } pour cet événement
 // - sinon: { activeEventIds: number[] } pour tous les événements de l'utilisateur
 export async function GET(req: Request) {
@@ -46,8 +44,7 @@ export async function GET(req: Request) {
   return NextResponse.json({ activeEventIds });
 }
 
-// POST /api/reminders
-// body: { event_id: number }
+
 // -> crée les rappels 60/30/15 min (futurs), envoie un mail de confirmation si email vérifié
 export async function POST(req: Request) {
   const session = await getServerSession(authOptions);
@@ -65,12 +62,10 @@ export async function POST(req: Request) {
   if (!ev) return NextResponse.json({ error: "Événement introuvable" }, { status: 404 });
 
   const now = new Date();
-  // (sécurité) si l’event est déjà fini, on refuse
   if (ev.date_fin && ev.date_fin <= now) {
     return NextResponse.json({ error: "L’événement est déjà terminé" }, { status: 409 });
   }
 
-  // Ne crée que les rappels encore futurs (tolérance 15s)
   const DELAIS = [60, 30, 15];
   const FUTURE_SAFETY_MS = 15_000;
 
@@ -89,7 +84,7 @@ export async function POST(req: Request) {
 
   const uid = Number(session.user.id);
 
-  // Upsert des rappels (évite les doublons grâce à l'unique composite)
+  // évite les doublons
   const createdRappels = await Promise.all(
     toCreate.map(({ delai, at }) =>
       prisma.rappel.upsert({
@@ -113,7 +108,6 @@ export async function POST(req: Request) {
     )
   );
 
-  // Email de confirmation (même look & feel) si l’email est vérifié
   const user = await prisma.utilisateur.findUnique({
     where: { id: uid },
     select: { email: true, nom: true, email_verifie: true },
