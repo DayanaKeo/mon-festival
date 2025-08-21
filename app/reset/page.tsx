@@ -1,9 +1,9 @@
 'use client'
 
+import { Suspense, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { useState } from 'react'
 
-export default function ResetPage() {
+function ResetInner() {
     const sp = useSearchParams()
     const router = useRouter()
     const token = sp.get('token') || ''
@@ -16,13 +16,14 @@ export default function ResetPage() {
         e.preventDefault()
         setMsg('')
         const res = await fetch('/api/reset', {
-            method:'POST', headers:{'Content-Type':'application/json'},
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ token, password: pwd })
         })
-        const data = await res.json()
+        const data = await res.json().catch(() => ({}))
         if (!res.ok) { setMsg(data.error || 'Erreur'); return }
         setOk(true)
-        setTimeout(()=>router.push('/login'), 1500)
+        setTimeout(() => router.push('/login'), 1500)
     }
 
     return (
@@ -43,10 +44,14 @@ export default function ResetPage() {
                                 placeholder="Nouveau mot de passe"
                                 className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 pr-24 text-white placeholder-white/40 outline-none focus:border-violet-500/60"
                                 value={pwd}
-                                onChange={e=>setPwd(e.target.value)}
+                                onChange={e => setPwd(e.target.value)}
                                 required
                             />
-                            <button type="button" onClick={()=>setShowPwd(v=>!v)} className="absolute right-2 top-1/2 -translate-y-1/2 rounded-lg px-3 py-1 text-xs text-white/70 hover:bg-white/10">
+                            <button
+                                type="button"
+                                onClick={() => setShowPwd(v => !v)}
+                                className="absolute right-2 top-1/2 -translate-y-1/2 rounded-lg px-3 py-1 text-xs text-white/70 hover:bg-white/10"
+                            >
                                 {showPwd ? 'Masquer' : 'Afficher'}
                             </button>
                         </div>
@@ -58,5 +63,13 @@ export default function ResetPage() {
                 </form>
             </div>
         </div>
+    )
+}
+
+export default function ResetPage() {
+    return (
+        <Suspense fallback={null}>
+            <ResetInner />
+        </Suspense>
     )
 }
