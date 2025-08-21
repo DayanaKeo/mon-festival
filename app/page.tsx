@@ -183,7 +183,7 @@ export default function HomePage() {
                             Voir les événements
                         </Link>
                         <Link
-                            href="/events"
+                            href="/map"
                             className="px-7 py-3 rounded-full bg-white/15 border border-white/30 text-white backdrop-blur-md hover:bg-white/25 transition"
                         >
                             Carte interactive
