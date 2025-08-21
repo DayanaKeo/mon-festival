@@ -7,7 +7,7 @@ const placeholderImages = [
   'https://picsum.photos/seed/2/600/300',
   'https://picsum.photos/seed/3/600/300',
   'https://picsum.photos/seed/4/600/300',
-  'https://picsum.photos/seed/5/600/300',
+  'https://picsum.photos/seed/5/600/300', 
 ];
 import L from 'leaflet';
 
@@ -135,7 +135,7 @@ export default function MapPage() {
         animation: 'pulse 2s infinite',
         zIndex: 0,
       }} />
-      <h1 className='from-violet-300 via-fuchsia-300 to-pink-300 text-2xl' style={{ fontSize: 24, fontWeight: 'bold' }}>Carte interactive du festival</h1>
+      <h1 className='from-violet-300 via-fuchsia-300 to-pink-300 text-2xl' style={{ fontSize: 24, fontWeight: 'bold', marginTop: 16 }}>Carte interactive du festival</h1>
       <p>Explorez le site du festival et localisez tous les points d'intérêt</p>
       <div style={{
         width: '55%',

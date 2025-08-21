@@ -1,3 +1,16 @@
+// GET /api/artistes/[id]
+export async function GET(_: Request, { params }: { params: { id: string } }) {
+    try {
+        const id = Number(params.id);
+        if (!Number.isFinite(id)) return NextResponse.json({ error: "ID invalide" }, { status: 400 });
+
+        const artiste = await prisma.artiste.findUnique({ where: { id } });
+        if (!artiste) return NextResponse.json({ error: "Introuvable" }, { status: 404 });
+        return NextResponse.json(artiste);
+    } catch {
+        return NextResponse.json({ error: "Erreur serveur" }, { status: 500 });
+    }
+}
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 

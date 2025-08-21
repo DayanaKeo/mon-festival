@@ -44,6 +44,7 @@ export default function Header() {
                 <nav className="hidden md:flex items-center gap-2">
                     <NavLink href="/events">Événements</NavLink>
                     {isAuth && <NavLink href="/favorites">Mes Favoris</NavLink>}
+                    <NavLink href="/artistes">Artistes</NavLink>
                     {isAdmin && <NavLink href="/admin">Admin</NavLink>}
                     {!isAuth && <NavLink href="/login">Connexion</NavLink>}
                     {!isAuth && <NavLink href="/register">Inscription</NavLink>}
@@ -71,6 +72,7 @@ export default function Header() {
                 <div className="md:hidden bg-black/70 backdrop-blur-md border-t border-white/10">
                     <div className="mx-auto max-w-6xl px-4 py-3 flex flex-col gap-2">
                         <NavLink href="/events">Événements</NavLink>
+                        <NavLink href="/artistes">Artistes</NavLink>
                         {isAuth && <NavLink href="/favorites">Mes Favoris</NavLink>}
                         {isAdmin && <NavLink href="/admin">Admin</NavLink>}
                         {!isAuth && <NavLink href="/login">Connexion</NavLink>}
