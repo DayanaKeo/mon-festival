@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="631f37b0-c7b9-4b37-9768-47a6899c8c26" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/next/next.openapi.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/next/public/swagger.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/next/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/next/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile/app/(tabs)/_layout.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile/app/(tabs)/explore.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mobile/app/(tabs)/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/next/prisma/seed.js" beforeDir="false" afterPath="$PROJECT_DIR$/next/prisma/seed.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +44,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "features/docroutes",
+    "git-widget-placeholder": "dev",
     "js.debugger.nextJs.config.created.client": "true",
     "js.debugger.nextJs.config.created.server": "true",
     "kotlin-language-version-configured": "true",
