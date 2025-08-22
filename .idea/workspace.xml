@@ -5,165 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="631f37b0-c7b9-4b37-9768-47a6899c8c26" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/next/next.openapi.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/next/public/swagger.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/admin/artistes/page.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/admin/events/page.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/admin/genres/page.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/admin/layout.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/admin/lieux/page.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/admin/page.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/admin/pois/page.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/admin/users/page.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/artistes/[id]/route.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/artistes/route.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/auth/[...nextauth]/route.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/events/[id]/route.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/events/route.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/favorites/[id]/route.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/favorites/route.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/forgot/route.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/genres/[id]/route.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/genres/route.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/lieux/[id]/route.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/lieux/route.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/meta/route.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/pois/[id]/route.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/pois/route.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/pusher/auth/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/api/pusher/auth/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/register/route.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/reminders/[eventId]/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/api/reminders/[eventId]/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/reminders/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/api/reminders/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/reset/route.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/tasks/reminders/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/api/tasks/reminders/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/users/[id]/route.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/users/route.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/verify/[id]/route.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/verify/route.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/artistes/[id]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/artistes/[id]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/artistes/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/artistes/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/events/[id]/page.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/events/page.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/favorites/page.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/forgot/page.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/globals.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/layout.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/login/page.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/map/MapClient.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/map/page.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/page.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/register/page.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/reset/page.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/verify/page.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Header.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/LoginPromptModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/next/components/LoginPromptModal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Providers.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/RealtimeNotifications.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/next/components/RealtimeNotifications.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ReminderListener.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/next/components/ReminderListener.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/auth.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/authOptions.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/mailer.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/prisma.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pusher-client.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next/lib/pusher-client.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pusher-server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next/lib/pusher-server.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/resetTokens.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/tokens.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/middleware.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mobile/app/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/mobile/app/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next.config.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/app/admin/artistes/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/admin/artistes/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/app/admin/events/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/admin/events/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/app/admin/genres/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/admin/genres/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/app/admin/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/admin/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/app/admin/lieux/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/admin/lieux/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/app/admin/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/admin/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/app/admin/pois/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/admin/pois/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/app/admin/users/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/admin/users/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/app/api/artistes/[id]/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/api/artistes/[id]/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/app/api/artistes/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/api/artistes/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/app/api/auth/[...nextauth]/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/api/auth/[...nextauth]/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/app/api/events/[id]/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/api/events/[id]/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/app/api/events/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/api/events/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/app/api/favorites/[id]/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/api/favorites/[id]/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/app/api/favorites/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/api/favorites/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/app/api/forgot/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/api/forgot/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/app/api/genres/[id]/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/api/genres/[id]/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/app/api/genres/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/api/genres/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/app/api/lieux/[id]/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/api/lieux/[id]/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/app/api/lieux/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/api/lieux/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/app/api/meta/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/api/meta/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/app/api/pois/[id]/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/api/pois/[id]/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/app/api/pois/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/api/pois/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/app/api/register/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/api/register/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/app/api/reset/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/api/reset/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/app/api/users/[id]/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/api/users/[id]/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/app/api/users/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/api/users/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/app/api/verify/[id]/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/api/verify/[id]/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/app/api/verify/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/api/verify/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/app/events/[id]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/events/[id]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/app/events/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/events/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/app/favorites/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/favorites/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/app/forgot/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/forgot/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/app/login/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/login/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/app/map/MapClient.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/map/MapClient.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/app/map/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/map/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/app/register/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/register/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/app/reset/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/reset/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/app/verify/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/next/app/verify/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/next/components/Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/components/Providers.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/next/components/Providers.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/next/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/lib/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next/lib/auth.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/lib/authOptions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next/lib/authOptions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/lib/mailer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next/lib/mailer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/lib/prisma.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next/lib/prisma.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/lib/resetTokens.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next/lib/resetTokens.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/lib/tokens.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next/lib/tokens.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/middleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next/middleware.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next/next.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/next/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/next/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/next/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/next/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/postcss.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/next/postcss.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/prisma/migrations/20250819100822_init/migration.sql" beforeDir="false" afterPath="$PROJECT_DIR$/next/prisma/migrations/20250819100822_init/migration.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/prisma/migrations/20250820082936_add_verification_token/migration.sql" beforeDir="false" afterPath="$PROJECT_DIR$/next/prisma/migrations/20250820082936_add_verification_token/migration.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/prisma/migrations/20250820093539_add_verification_token/migration.sql" beforeDir="false" afterPath="$PROJECT_DIR$/next/prisma/migrations/20250820093539_add_verification_token/migration.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/prisma/migrations/20250820094154_fix_verification_token/migration.sql" beforeDir="false" afterPath="$PROJECT_DIR$/next/prisma/migrations/20250820094154_fix_verification_token/migration.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/prisma/migrations/20250820113656_add_password_reset_token/migration.sql" beforeDir="false" afterPath="$PROJECT_DIR$/next/prisma/migrations/20250820113656_add_password_reset_token/migration.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/prisma/migrations/migration_lock.toml" beforeDir="false" afterPath="$PROJECT_DIR$/next/prisma/migrations/migration_lock.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/next/prisma/schema.prisma" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/prisma/seed.js" beforeDir="false" afterPath="$PROJECT_DIR$/next/prisma/seed.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/scripts/testMail.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next/scripts/testMail.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/next/tailwind.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/postcss.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/postcss.config.mjs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/migrations/20250819100822_init/migration.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/migrations/20250820082936_add_verification_token/migration.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/migrations/20250820093539_add_verification_token/migration.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/migrations/20250820094154_fix_verification_token/migration.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/migrations/20250820113656_add_password_reset_token/migration.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/migrations/migration_lock.toml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/schema.prisma" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/seed.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/file.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/globe.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/icon-notif.png" beforeDir="false" afterPath="$PROJECT_DIR$/next/public/icon-notif.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/city-map-navigation-gps-navigator-600nw-2449090903.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/next.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vercel.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/videos/festival.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/window.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/reminders-dev.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next/scripts/reminders-dev.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/testMail.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vercel.json" beforeDir="false" afterPath="$PROJECT_DIR$/next/vercel.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,7 +44,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "dev",
+    "git-widget-placeholder": "features/docroutes",
     "js.debugger.nextJs.config.created.client": "true",
     "js.debugger.nextJs.config.created.server": "true",
     "kotlin-language-version-configured": "true",
