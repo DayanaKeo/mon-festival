@@ -3,7 +3,7 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { WebView } from 'react-native-webview';
 import { Platform } from 'react-native';
 
-const WEB_URL = process.env.EXPO_PUBLIC_WEB_URL ?? 'http://localhost:3000';
+const WEB_URL = process.env.EXPO_PUBLIC_WEB_URL ?? 'http://172.16.0.188:3000';
 
 export default function App() {
     return (

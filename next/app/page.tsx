@@ -183,6 +183,12 @@ export default function HomePage() {
                             Voir les événements
                         </Link>
                         <Link
+                            href="/artistes"
+                            className="px-7 py-3 rounded-full bg-white/15 border border-white/30 text-white backdrop-blur-md hover:bg-white/25 transition"
+                        >
+                            Les Artistes
+                        </Link>
+                        <Link
                             href="/map"
                             className="px-7 py-3 rounded-full bg-white/15 border border-white/30 text-white backdrop-blur-md hover:bg-white/25 transition"
                         >
