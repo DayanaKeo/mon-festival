@@ -1,31 +1,54 @@
-# Aurora Fest — README
+# Aurora Fest — Documentation
 
-Un projet **Next.js 15** (App Router) full-stack avec **Prisma/MySQL**, **NextAuth (Credentials)**, inscriptions avec **vérification par e-mail (token hashé)**, **forgot/reset password**, back+front dans **un seul projet**, et **Docker** pour la base.
+Projet complet avec :
+- **Backend (Next.js 15 + App Router)**  
+- **Prisma + MySQL (Docker)**  
+- **NextAuth (Credentials)** avec vérification e-mail, reset password  
+- **API Docs (Swagger)**  
+- **Frontend mobile (Expo)**  
 
 ---
 
 ## 1) Prérequis
 
-* Node.js ≥ 18
-* Docker & Docker Compose
-* Un compte **Mailtrap** (sandbox SMTP)
-* Git
+- Node.js ≥ 18  
+- Docker + Docker Compose  
+- Git  
+- Un compte Mailtrap (pour les e-mails de test)
 
 ---
 
-## 2) Cloner et installer
+## 2) Cloner le repo
 
 ```bash
 git clone <votre-repo> mon-festival
 cd mon-festival
-npm i
+````
+
+Deux dossiers :
+
+```
+mon-festival/
+  next/     # Backend + Front Next.js
+  mobile/   # App mobile Expo
+  README.md
+  .gitignore
 ```
 
 ---
 
-## 3) Fichier `.env`
+## 3) Backend (Next.js)
 
-Créez un fichier `.env` à la racine (adapter si besoin) :
+### Installation des dépendances
+
+```bash
+cd next
+npm install
+```
+
+### Fichier `.env`
+
+Créez `next/.env` :
 
 ```env
 # Base de données
@@ -33,29 +56,25 @@ DATABASE_URL="mysql://app:app@localhost:3306/festival"
 SHADOW_DATABASE_URL="mysql://root:root@localhost:3306/festival_shadow"
 
 # NextAuth
-NEXTAUTH_SECRET="Jl63UUwPmSSaScztu8X3s963xb5lc2Mjq3UweSUx4t8="
+NEXTAUTH_SECRET="change_me"
 NEXTAUTH_URL="http://localhost:3000"
 
 # SMTP (Mailtrap)
 SMTP_HOST=sandbox.smtp.mailtrap.io
 SMTP_PORT=2525
-SMTP_USER=<votre_user_mailtrap>
-SMTP_PASS=<votre_pass_mailtrap>
+SMTP_USER=<mailtrap_user>
+SMTP_PASS=<mailtrap_pass>
 MAIL_FROM="Aurora Fest <no-reply@aurorafest.dev>"
 
-# URL publique du front (pour les liens dans les e-mails)
+# URL publique du front (liens e-mails)
 NEXT_PUBLIC_APP_URL=http://localhost:3000
-# si vous testez depuis un téléphone sur le réseau local :
-# NEXT_PUBLIC_APP_URL=http://<IP_locale_de_votre_machine>:3000
 ```
-
-> `NEXT_PUBLIC_APP_URL` doit être **atteignable par l’appareil** qui clique sur le lien dans l’e-mail.
 
 ---
 
-## 4) Démarrer MySQL avec Docker
+## 4) Base de données (Docker MySQL)
 
-Un `docker-compose.yml` (résumé) :
+Fichier `next/docker-compose.yml` :
 
 ```yaml
 services:
@@ -76,9 +95,10 @@ volumes:
   db_data:
 ```
 
-Lancer :
+Démarrer MySQL :
 
 ```bash
+cd next
 docker compose up -d
 ```
 
@@ -89,137 +109,54 @@ docker ps
 docker logs -f festival_db
 ```
 
-> Besoin d’un shell MySQL dans le conteneur :
->
-> ```bash
-> docker exec -it festival_db mysql -uroot -proot
-> ```
+Shell MySQL :
+
+```bash
+docker exec -it festival_db mysql -uroot -proot
+```
 
 ---
 
-## 5) Prisma : migrations + client
+## 5) Prisma
 
-Générer le client puis appliquer les migrations :
+### Générer client + migrations
 
 ```bash
 npx prisma generate
 npx prisma migrate dev -n init
 ```
 
-### Si vous voyez une erreur **P3014 / shadow database**
-
-Créez manuellement la BDD shadow :
+⚠️ Si erreur `P3014` → créer manuellement la shadow DB :
 
 ```bash
-docker exec -it festival_db mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS festival_shadow CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+docker exec -it festival_db mysql -uroot -proot \
+  -e "CREATE DATABASE IF NOT EXISTS festival_shadow CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
 ```
 
-Relancez la migration :
+Puis relancer :
 
 ```bash
 npx prisma migrate dev -n init
 ```
 
-### Seed (données de démo)
+### Seed
 
-Si le script existe dans le projet :
-
-```bash
-npm run prisma:seed
-```
-
----
-
-## 6) Lancer le serveur Next.js (dev)
+Exécuter les données de démo :
 
 ```bash
-npm run dev
+# seed via Prisma
+npx prisma db seed
+
+# exécution manuelle
+node prisma/seed.js
+
+# reset complet + reseed
+npx prisma migrate reset
 ```
 
-* Front/Back/API : [http://localhost:3000](http://localhost:3000)
-* API Prisma : via `/app/api/*`
+### Prisma Studio
 
----
-
-## 7) Authentification & e-mails
-
-### Inscription
-
-1. Page `/register`
-2. Envoi d’un e-mail via **Mailtrap** avec un **token** (hashé en BDD, expiration 24h).
-3. Le clic ouvre `/verify?token=...` → validation côté serveur → redirection auto vers `/login?verified=1`.
-
-### Connexion
-
-* Page `/login` (Credentials, via **NextAuth**)
-* Auth autorisée uniquement si `email_verifie = true`.
-
-### Mot de passe oublié / reset
-
-* `/forgot` → envoie un lien `/reset?token=...` (token hashé, expiration 1h)
-* `/reset` → poste le nouveau mot de passe → met à jour `mot_de_passe_hash`.
-
----
-
-## 8) Rôles / Admin (option)
-
-Vous pouvez promouvoir un utilisateur en SQL (exemple) :
-
-```bash
-docker exec -it festival_db mysql -uroot -proot \
-  -e "UPDATE festival.Utilisateur SET role='ADMIN' WHERE email='votre@mail.com';"
-```
-
----
-
-## 9) Arborescence (résumé)
-
-```
-app/
-  api/
-    auth/[...nextauth]/route.ts     # NextAuth
-    register/route.ts               # inscription + mail
-    verify/route.ts                 # vérif email (token)
-    forgot/route.ts                 # demande reset
-    reset/route.ts                  # applique reset
-  login/page.tsx                    # connexion
-  register/page.tsx                 # inscription
-  verify/page.tsx                   # page de confirmation
-  forgot/page.tsx                   # envoi lien reset
-  reset/page.tsx                    # nouveau mot de passe
-lib/
-  prisma.ts                         # client Prisma
-  mailer.ts                         # transport Mailtrap + templates
-  tokens.ts                         # tokens vérif e-mail (hash + expire)
-  resetTokens.ts                    # tokens reset (hash + expire)
-prisma/
-  schema.prisma                     # schéma (Utilisateur, VerificationToken, PasswordResetToken…)
-  migrations/                       # migrations générées
-public/
-  videos/festival.mp4               # vidéo de fond
-```
-
----
-
-## 10) Scripts utiles
-
-Dans `package.json` (exemples recommandés) :
-
-```json
-{
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "prisma:generate": "prisma generate",
-    "prisma:migrate": "prisma migrate dev",
-    "prisma:studio": "prisma studio",
-    "prisma:seed": "node prisma/seed.js"
-  }
-}
-```
-
-Studio Prisma (UI DB) :
+Explorer la base :
 
 ```bash
 npx prisma studio
@@ -227,60 +164,125 @@ npx prisma studio
 
 ---
 
-## 11) Docker : commandes pratiques
+## 6) Lancer Next.js
 
-* Démarrer : `docker compose up -d`
-* Arrêter : `docker compose down`
-* Arrêter et supprimer volume DB (reset total) :
-  `docker compose down -v`
-* Logs DB : `docker logs -f festival_db`
-* Shell MySQL :
-  `docker exec -it festival_db mysql -uroot -proot`
+### Dev
+
+```bash
+npm run dev
+```
+
+Accessible : [http://localhost:3000](http://localhost:3000)
+
+### Prod
+
+⚠️ Génère aussi la doc API avant le build.
+
+```bash
+npm run build   # équivaut à: npm run docs:gen && next build
+npm run start
+```
 
 ---
 
-## 12) Build / Production (simple)
+## 7) API Docs (Swagger)
 
-Build :
+### Générer la spec
 
 ```bash
-npm run build
+npm run docs:gen
 ```
 
-Démarrer en prod :
+→ Produit `public/openapi.json`.
+
+### Consulter
+
+* JSON brut : [http://localhost:3000/openapi.json](http://localhost:3000/openapi.json)
+* UI Swagger : [http://localhost:3000/api-docs](http://localhost:3000/api-docs)
+
+---
+
+## 8) Mobile (Expo)
+
+### Installation
+
+```bash
+cd ../mobile
+npm install
+```
+
+### Config `WEB_URL`
+
+Dans `mobile/app/index.tsx`, la variable :
+
+```ts
+const WEB_URL = process.env.EXPO_PUBLIC_WEB_URL ?? "http://172.16.0.188:3000";
+```
+
+⚠️ Remplacer l’IP par **celle affichée dans `npm run dev` du projet Next** (ou par `http://localhost:3000` si vous êtes sur le même appareil).
+
+---
+
+### Lancer Expo
 
 ```bash
 npm run start
 ```
 
-> En prod, pensez à :
->
-> * un vrai domaine pour `NEXTAUTH_URL` et `NEXT_PUBLIC_APP_URL`
-> * un SMTP de prod (Brevo, Mailgun, etc.)
-> * des secrets `.env` sécurisés
+Scanner le QR code dans Expo Go.
 
 ---
 
-## 13) Dépannage rapide
+## 9) Authentification
 
-* **P3014 / Shadow DB** → créez `festival_shadow` (cf. §5)
-* **P1003 / DB introuvable** → MySQL pas up ou mauvais `DATABASE_URL`
-* **E-mails non reçus** → vérifiez Mailtrap (Inbox SMTP), `SMTP_*` et `MAIL_FROM`
-* **Liens d’e-mail n’ouvrent pas le site** → `NEXT_PUBLIC_APP_URL` doit être atteignable (localhost vs IP locale)
-* **“Cannot resolve bcrypt”** → utilisez `bcryptjs` côté Node (déjà câblé)
-* **401 sur login** → compte non vérifié ou mauvais mot de passe
+* **Inscription** : `/register` → mail (Mailtrap) avec lien de vérification.
+* **Connexion** : `/login` (seulement si `email_verifie = true`).
+* **Mot de passe oublié** : `/forgot` → envoi d’un lien `/reset`.
+* **Reset** : `/reset` → nouveau mot de passe → update en BDD.
 
 ---
 
-## 14) Sécurité (déjà intégré)
+## 10) Commandes utiles
 
-* Tokens e-mail et reset **opaques** et **hashés** (SHA-256) stockés en BDD, avec **expiration** et **usage unique**.
-* Credentials sécurisés via `bcryptjs`.
-* Aucune fuite d’info sur `/forgot` (réponse toujours OK).
+Backend (`next/`) :
+
+```bash
+npm run dev            # dev
+npm run build          # build prod (inclut doc API)
+npm run start          # start prod
+npm run prisma:studio  # ouvrir Prisma Studio
+npm run prisma:seed    # seed manuelle
+npx prisma migrate reset   # reset + reseed
+```
+
+Mobile (`mobile/`) :
+
+```bash
+npm run start          # lancer Expo
+```
+
+Docker :
+
+```bash
+docker compose up -d   # démarrer DB
+docker compose down    # arrêter
+docker compose down -v # reset total
+docker logs -f festival_db
+```
 
 ---
 
-## 15) Crédit / Licence
+## 11) Notes & bonnes pratiques
 
-Projet pédagogique “festival” — librement réutilisable pour vos TP/démos.
-Améliorations bienvenues (PR, issues) ✌️
+* Lors de l’utilisation du **mobile**, adaptez toujours `WEB_URL` à l’adresse affichée par Next (`npm run dev`).
+* Si dans les e-mails les liens contiennent une IP inaccessible, remplacez par `http://localhost:3000`.
+* Pensez à sécuriser `.env` et secrets en prod.
+* Pour la prod : configurer un vrai SMTP (Brevo, Mailgun, etc.) et un vrai domaine pour `NEXTAUTH_URL` et `NEXT_PUBLIC_APP_URL`.
+
+---
+
+## 12) Licence
+
+Projet pédagogique Aurora Fest — librement réutilisable et améliorable.
+
+Projet mené par Dayana Keo et Melvin Delorme

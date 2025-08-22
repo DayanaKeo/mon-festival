@@ -1,0 +1,21 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Aurora Fest API",
+    "version": "1.0.0",
+    "description": "Spec auto-générée depuis app/api/** (Next App Router)"
+  },
+  "servers": [
+    { "url": "http://localhost:3000" }
+  ],
+
+  "apiDir": "app/api",
+  "schemaDir": "app/api",
+  "schemaType": "typescript",
+
+  "outputFile": "openapi.json",
+  "docsUrl": "/api-docs",
+
+  "includeOpenApiRoutes": false,
+  "debug": false
+}
